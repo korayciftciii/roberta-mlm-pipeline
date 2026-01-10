@@ -1,0 +1,1406 @@
+{
+  "created_at": "2026-01-10",
+  "total_tasks": 200,
+  "tasks": [
+    {
+      "query_id": "07a25704-f9c6-4170-bc71-22ebe4ea9f2c",
+      "term": "divan-ı ahkâm-ı adliye",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f491c9db-0b6b-426e-9e04-b746076f25fd",
+      "term": "emprevizyon nazariyesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f6790796-67df-47d1-98a2-7fe225f00254",
+      "term": "fekk-i haciz",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "500cbe95-ff68-4c17-b5d8-7c2f37616d6e",
+      "term": "mefhumu muhalif",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b2a16ad1-78c6-466e-a503-d909e0ce52d4",
+      "term": "bey'i bi-l vefâ",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "95b0ba36-a981-4033-80e9-fd834088e0f2",
+      "term": "tüzel kişi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5dd5b19d-a2a0-4d5f-a97f-552f4bfc62e3",
+      "term": "avukatlık kanunu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "0860393b-1b9e-4004-a90d-0f9441fbb395",
+      "term": "nâm-ı müstear",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f9142088-bd19-4149-a38e-824460f377c2",
+      "term": "meşruta tevliyet davası",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "03c351e5-2dae-4f62-b815-6fae0752e6d8",
+      "term": "hukuki işlem",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f3321016-9dd0-4058-af0c-959c0df8a0e1",
+      "term": "şura-yı devlet",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "948d668b-ab5d-4d85-9e88-5bdbf8d5e406",
+      "term": "ölüm karinesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6ab94613-66c9-4e93-b451-a61189695ecb",
+      "term": "tam ehliyetsiz",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6370db49-3d04-4e0b-8d56-23af0b5b39a0",
+      "term": "sıra cetveli",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2f3d2074-0756-4db5-8462-a54a63f7df88",
+      "term": "kayın hısımlığı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ba1a6497-a05d-4fe8-80eb-f86ba1c1313d",
+      "term": "fezleke veya tahkikat evrakı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ea8b22ea-43cf-47d0-9af6-46dcfade12e5",
+      "term": "arâzi-i memlûke",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c02a7069-bb5f-421f-8265-bd96695beff2",
+      "term": "hadd-i maruf",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "de866c06-e9c5-4872-bc97-d256c1128223",
+      "term": "idare mahkemesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "0e21fad5-83d6-496c-8e60-f95867bb19c5",
+      "term": "kamu yararı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "8923db99-fc8a-4627-a42f-edaebf63f806",
+      "term": "ani edim",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "1d3051bb-4658-463c-b4cf-566459f7ba09",
+      "term": "suç tasnii",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f923330f-3b34-4f94-8111-8c74ad8b4523",
+      "term": "tüketici mahkemesi",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "29b91aae-3268-4184-b329-766d967395cc",
+      "term": "tensip zaptı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "bd0c3bc0-6e11-4b99-9e5e-1c3559e20a25",
+      "term": "haksız iktisap",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ca4f8875-1463-42f5-9ba4-04d816efbe3c",
+      "term": "mahalli idareler",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "3a1b78ae-2b4f-49ac-bc4b-f99406feb501",
+      "term": "cürüm isnadı",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "19982a3f-faa8-4c47-951b-7b5a5e69525b",
+      "term": "hakk-ı şürb",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f2c498fc-73de-44c3-a2da-e7522d4c1ccd",
+      "term": "müspet edim",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "55efc84e-1238-450d-8840-367fc6adf7e3",
+      "term": "hakimler ve savcılar kurulu",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "837d2552-8f6e-4085-8910-bac6f3d3397e",
+      "term": "ticaret mahkemesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "8ca8b07f-a33e-4616-a2c3-4b1f8854f3fa",
+      "term": "resmi senet",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "4221f56f-d57c-4e1c-9248-49a45108c0d5",
+      "term": "kat irtifakı",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f6eaab74-d9ea-45f6-8065-3f0b7158057f",
+      "term": "bağımsız bölüm",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "116d2edf-c677-4027-b9df-4323807c352a",
+      "term": "gaiplik karinesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "71f04029-8f39-47be-8237-19c4206a5965",
+      "term": "fuzuli şâgil",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "313cfabc-d5c2-4769-9241-9d25dded9c3f",
+      "term": "karineyi hal",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "51f85bb1-8fe3-47a4-bfcd-ca7d8b306124",
+      "term": "iştirak nafakası",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "e57e147d-f005-4bc0-a133-bd4b90991a28",
+      "term": "vergide adalet ilkesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "3526be85-3e0a-410f-877c-84eb050f7e32",
+      "term": "ıdâre-i husûsiyye",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f2ff710c-fe1a-4ff5-82ef-ec8619f6ddd4",
+      "term": "mazbut vakıf",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "234131fb-c15b-4647-bc81-e7dafc38906f",
+      "term": "iade-i muhakeme",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "fc9d4f2b-c425-4862-8506-bd427d6f24f0",
+      "term": "yan soy hısımlığı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c8af3f0a-f12d-4b8b-b583-2f8d7a42e5b9",
+      "term": "adiyen darp",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c9a1d4b0-acad-49f3-8bcf-25b46dab28eb",
+      "term": "satış vaadi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "02a76391-33ce-4293-9b9e-5268ae814492",
+      "term": "ipotek akit tablosu",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2b16c057-8cda-4051-93da-e3c00194cd73",
+      "term": "adli psikolog",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d39db3fc-1954-47fc-8e5b-4f466debc2d2",
+      "term": "ılmi içtihatler",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "889628ad-ff4e-4500-9846-9e811141dcab",
+      "term": "devlet şurası",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6f53039f-4300-4e80-8c18-edc827d73b5d",
+      "term": "ikale sözleşmesi",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "02e6ebd1-5f3e-4fad-8824-53e9d519bb03",
+      "term": "köy kanunu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "37d0fe29-1872-4889-9bf8-7d7f96246029",
+      "term": "tebligat kanunu",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "599745de-432b-432d-a7c1-70df887189d8",
+      "term": "kesinlik sınırı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "3e1874b6-b0d4-4372-a98d-84f47efaa94d",
+      "term": "ıcâzet-i lâhika",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "dc4c479c-cee3-4f3a-88f3-182f74dd9950",
+      "term": "mürur hakkı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a009fffc-f11c-4719-9138-921d033862b8",
+      "term": "şahsi haklar",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c3f3ab38-da81-4816-990c-ef3bde871c7c",
+      "term": "şahsı âhar",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "3c4bc06e-109c-4a7f-9dac-7e4a3fa0c3af",
+      "term": "hukuki tağyir",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "9df02c15-0d49-40b5-9728-8427fda9c3fc",
+      "term": "cumhuriyet savcısı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5ffa247d-b18e-4d31-a108-7b20f22c2d00",
+      "term": "yed-i emin",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "4a82216a-d6fa-4d15-a508-d7b21851215f",
+      "term": "bölünebilir edim",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "4af6cb19-5a33-4f1d-b39f-440d38accf63",
+      "term": "meşru müdafaa",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "04ddab14-eefd-4f8a-b94f-45fead1c53df",
+      "term": "icra ve iflas kanunu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "1f0f8db4-09b3-4e2c-a83c-7ba71341754e",
+      "term": "mutlak muvazaa",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "19d685f4-bc79-4beb-836b-daa341852760",
+      "term": "verginin tahsili",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "832c6eae-de70-4f9b-9929-059c34aa32cc",
+      "term": "mutlak hak",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "fd34195b-98bb-4acc-b2be-71ae1dc2bacb",
+      "term": "cari fiyat",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ca4fa479-c2a0-4701-855c-6ee65c4539d3",
+      "term": "feth-i kabir",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "cab685c5-00cf-4aaf-bfe2-bf002055b034",
+      "term": "değer baha",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "88febf17-1764-408c-b5ab-2ee951dd1553",
+      "term": "fiil ehliyeti",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "28d8c90b-2dae-4a79-9da8-344b7c0b4a0d",
+      "term": "sened-i hâkanî",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "1bd77ad4-2799-4f3d-8a13-e7bf7cfb1e62",
+      "term": "bankacılık kanunu",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "27d36bb3-07f4-41d0-84b1-540ab355a84a",
+      "term": "asliye ceza mahkemesi",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d7dde09c-3922-498f-9036-fbffaca2a4fa",
+      "term": "ehl-i vukûf",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5ac64bcc-798d-4088-8b13-3a99dbba1d79",
+      "term": "çifte standart",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a76ec9af-9fcb-4596-af69-f9ef7a21cf18",
+      "term": "veraset ilamı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d7d2e215-6904-486c-b849-f3271b3f24d4",
+      "term": "nihai karar",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "bb308ab4-a985-4880-acb0-edaeb72d87fe",
+      "term": "vakıf senedi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "03a61eea-c08b-4ace-b6b4-8950361a795f",
+      "term": "gayrimenkul tellallığı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6d47364e-9af5-4e3b-827c-3ab130473db2",
+      "term": "taraf ehliyeti",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "cac9f826-f06c-44e9-9dd1-7b34fce78c9c",
+      "term": "ağır ceza mahkemesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d77063aa-4442-4278-a711-eefc10f993a9",
+      "term": "yerleşme alanı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "588ed993-1ef6-4707-beb4-b52d0af7c5e8",
+      "term": "mahluliyet kararı",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "3e6b9a2f-5d78-417d-812f-51ca4b7d4ea5",
+      "term": "cumhuriyet başsavcılığı",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6190848f-f230-40ad-8393-1b06b75272b8",
+      "term": "sıhri hısım",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a981a6cb-0dc5-4d4c-b168-a853265be8be",
+      "term": "sebepsiz zenginleşme",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b83c6996-afbc-43b0-82ff-654d30d8c1a8",
+      "term": "müddei umumi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "e710842f-d064-4349-9fb8-195bfe676b53",
+      "term": "türk medeni kanunu",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "aa28066f-ebe0-4463-8cce-a386a05b0d11",
+      "term": "tehir erteleme",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "140be13a-0643-4c4e-92bd-eb3956923b6e",
+      "term": "yed'i istirdat",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b879d3ee-4542-4d1d-a128-f93b4a3d62f1",
+      "term": "vergi ziyaı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f5aa65da-6df2-48cb-9717-a4a4e42964b9",
+      "term": "fiili yol",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2339fe78-dd21-43df-b820-1e8907dd97a6",
+      "term": "bölünemez edim",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d27e5702-8ca6-4030-b29a-5a933361ff51",
+      "term": "dahiliye vekâleti",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "7901c631-6f2f-43da-9f4d-307017774f92",
+      "term": "akd-i muvazaa",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d9b34187-febc-47f8-b7f4-5140659ad368",
+      "term": "zihni kayıt",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "26901ce2-89ea-4a5a-90b3-83d6ecd19b26",
+      "term": "ashab-ı intikal",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "fd9a2399-974b-4576-b39e-d9db44e0265e",
+      "term": "kamu tüzel kişileri",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "bbd234ee-044d-42d3-a9a1-87dfbbaa17fd",
+      "term": "nafaka yükümü",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6f14bf9e-575e-450e-afff-ce474594df32",
+      "term": "ırat senedi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "87e2c19f-a617-4a21-98ca-4e5682a4fee8",
+      "term": "arâzi-i mezrû'a",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "4ced79e3-e33f-4c31-b41c-01daf3975f0c",
+      "term": "imar kanunu",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "deabeab4-070b-48db-93ad-5f7138bd8c0a",
+      "term": "küşadaçma; işletmeye açmak",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "af7012db-d069-44b7-9d83-1f8c79dcfbe6",
+      "term": "sosyal ve ekonomik haklar",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "169bf444-09a1-42b5-acdf-7633c1505936",
+      "term": "kambiyo taahhüdü",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a71869f0-f384-4dde-8a13-b2a7f70dd6a0",
+      "term": "ıztırar hali",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d497b89e-f843-4d49-9e76-503406fb402c",
+      "term": "objektif iyiniyet",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "6ca389b6-47e9-49d5-b6ad-ab1ae87b6965",
+      "term": "müşterek mülkiyet",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "9c6978d7-926f-4057-a408-087a5a9cbe9a",
+      "term": "kahir ekseriyet",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "9281ec10-63ed-4482-9771-68ba87b9696b",
+      "term": "adem-i vüsuk",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "50cc16a6-c4bb-4fa8-b44d-1c05882d2ecd",
+      "term": "yerindelik denetimi",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2a7a4e83-65fe-480a-b9a0-5fbc9b85f4e8",
+      "term": "düplik dilekçesi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "339e31c7-a768-42c3-a5d7-6c721edb0b87",
+      "term": "aded-i müretteb",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "0ba9d604-62df-4fd4-8dab-78319082af6d",
+      "term": "tek taraflı irade beyanı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "345b2057-f768-45cc-869b-45d44ed4d534",
+      "term": "baro başkanlığı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c5ad07b8-6e63-4a38-be5f-84622b84c25a",
+      "term": "alivre satış",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b556a674-30bf-47ae-b485-d98c4057f4a6",
+      "term": "duruşma tutanağı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c76d3b64-a1b8-4dd8-92e1-ffd719b456d3",
+      "term": "davanın ıslahı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "033e4119-54dd-43df-8ba9-9d9554ff5f39",
+      "term": "borç ilişkisi",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c831efec-5ee3-4797-9f91-3d59ff4163e4",
+      "term": "tercihe şayan",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "28d5147c-567e-423f-bc32-d07d933f307a",
+      "term": "dain-i mürtehin",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "1ed45ca3-9374-4ca9-b6d6-3410832cdc97",
+      "term": "orta malları",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "905f4d14-8c49-4d99-a249-07ebd921a5e6",
+      "term": "zorla getirme kararı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "00784132-f7a3-4793-a6bf-29ef3eba952c",
+      "term": "rayiç değer",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "90112021-a360-4ef4-8cb9-fec61ccb2321",
+      "term": "emlak vergisi",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "e4d6e32c-2b59-4a6a-80be-ac3643ad85e9",
+      "term": "vergi mükellefi",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "7a786cb0-38d3-424d-b928-909f368c907e",
+      "term": "türk ceza kanunu",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ba4648e4-d918-40b4-975c-8ddd6a2ebbdb",
+      "term": "ihtiyati haciz",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "72a9b584-1dee-4e63-abcd-2a91d8d7a267",
+      "term": "tüketicinin korunması hakkında kanun",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "812bb281-f829-4bc3-bac9-4a4e5d876666",
+      "term": "sulh hukuk mahkemesi",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d3a45c2b-c2cc-4727-81fb-2e12c59d5ca4",
+      "term": "abonman sözleşmeleri",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2ed2b858-2533-4261-90e9-0f3b3c6fc0e4",
+      "term": "türk borçlar kanunu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c7714555-940f-4c79-96c0-abb05b3e5ee6",
+      "term": "kazaî içtihatler",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f8e8dfbd-b9da-4a20-b2dd-07798ccbf472",
+      "term": "makable şamil",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "976300a8-f83a-49db-80b3-5245a8423b2f",
+      "term": "ita amiri",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "0c19b13a-c73d-42d7-a997-7a6d5bb35b48",
+      "term": "arsa payı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "29f9fb17-2d49-4a40-9ea9-4058225c6301",
+      "term": "şâyi hisse",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "df16268c-76ad-4070-9307-07c8dc29ed08",
+      "term": "masarifi muhakeme",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b9062dff-f026-4672-9288-4f4bb29b9093",
+      "term": "il özel idaresi kanunu",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "dc1be8c5-b6aa-404b-a8c0-b7604e80739b",
+      "term": "kazanılmış hak",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2b70ea40-db17-4408-9ad8-06d448619c6d",
+      "term": "yüksek seçim kurulu",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "7d00b6c9-ae55-4eae-a3db-dd46431ae932",
+      "term": "divan-ı muhasebat",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "8282471e-566d-4d1e-bd77-80f490b01996",
+      "term": "zeyil name",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a323c375-3a7f-44b4-b375-16e99439c860",
+      "term": "menfi edim",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d50b07b8-85a7-4eee-a288-5b9a16d5d168",
+      "term": "açık artırma",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "283297ce-a3d0-470a-a2f7-e1a241279375",
+      "term": "nispi butlan",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "1510d8a4-52b8-41d3-a2dc-07700702e1fb",
+      "term": "tedip hakkı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "95b939e4-8099-40e5-8c89-1db8c218afab",
+      "term": "geçit hakkı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "4cec4bda-9442-43e1-82f3-884def81be5d",
+      "term": "yönetim planı",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b762b594-4bb0-4f9c-adda-7fd30cb43c6f",
+      "term": "tehlikeli hükümlü",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "7b5283ae-2168-4b57-8997-f4b2e9f11a10",
+      "term": "adalet komisyonu",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "031f318f-c2cb-4ebc-8e5b-b11b7b3d8b4b",
+      "term": "izinsiz defin",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ac1af47f-adb1-4291-809c-e5247facde2e",
+      "term": "edinilmiş mallar",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c4a82b3f-445d-444e-9579-dd0cc42c1093",
+      "term": "izale'i şüyu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "55116cc3-b5a9-4d82-aef7-66f6bfb10bc0",
+      "term": "ahval-i şahsiye",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b379309d-64f6-490a-bfcc-32f23e68f147",
+      "term": "hapsen tazyik",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "e4042bdd-681c-4eb9-a216-1cc0a1deccf6",
+      "term": "suni hısımlık",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c2ce52fa-7704-4d85-bfee-6d628f576b00",
+      "term": "ademi merkeziyet",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c44b7f95-a52c-4b48-bceb-e4c2e7805cdc",
+      "term": "mera kanunu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f7ab9a9d-eb23-4555-b138-0b13488b6dd7",
+      "term": "ıcareteynli vakıf",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5fa4eac3-ea9e-4e8f-af01-289531b77868",
+      "term": "canîb-i beytülmal",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ad00395f-6c06-4fd4-80fb-3eb7e6a1fc6d",
+      "term": "kaziyye-i muhkeme",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "7eaeadb4-6e2a-4962-9ee1-577732e251dc",
+      "term": "adli tıp kurumu",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "128e15c1-0559-4d31-94e6-157479f3c30e",
+      "term": "hasılat kirası",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5885a71b-3431-4b3f-aff5-8e61894b69df",
+      "term": "mütekabiliyet esası",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "995a6cbc-2791-43c4-a847-4e4653573a92",
+      "term": "vergi sorumlusu",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "95cd6359-5388-4f86-a571-935d910a8cad",
+      "term": "mülkiyet hakkı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d2ebfd81-700f-46cd-b534-3a2b1da87f28",
+      "term": "iddet müddeti",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f64478e7-3892-4955-9754-b97e1ef1973b",
+      "term": "teşkilat-ı esasi",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "afc32223-bc58-4562-8c7f-f4e6033fe0b1",
+      "term": "muhkem kaziye",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a214252f-4c17-468d-8582-f0424c6583ae",
+      "term": "alt işveren",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f1381fc5-9c3f-4f82-856a-a80349594145",
+      "term": "ahde vefa",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "eed68699-7b55-4e2b-8263-d1a9eb315077",
+      "term": "tapu sicili",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "102ea61e-d8d0-4702-9a69-2b5e715c6df4",
+      "term": "tazyik hapsi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "33d33d15-4682-4a4a-9e4e-09c0af44d76f",
+      "term": "taraf teşkili",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "c3fcb286-eef8-4554-af8d-6a6eb6f9d56e",
+      "term": "ıvazsız akit",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f579d8fc-d642-4b6f-bfac-e58244ca1f9c",
+      "term": "asliye hukuk mahkemesi",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5024550f-b1f0-4124-aa37-2afda671b80e",
+      "term": "kamu davası",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "b82478f9-9f72-4e78-83ae-f37c082df347",
+      "term": "zaman-i rücu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "14194025-462d-433f-ba9a-cfab5d18c259",
+      "term": "vekalet sözleşmesi",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "dd715f85-cc22-4478-a9f2-0fe809b4cca9",
+      "term": "bila tebliğ",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "e1d2c965-6a15-4120-a8b5-560d89c912af",
+      "term": "ceza muhakemesi kanunu",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "5a94e491-d9df-4db7-abc7-1ac28ef9b030",
+      "term": "intifak hakkı",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "51662203-ac3a-4700-af14-429cda7179b8",
+      "term": "acizlik def'i",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "4f19467d-ae90-4477-aaa9-a582bb3d0c3d",
+      "term": "siyasi haklar",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "fdfd24af-fb66-46f1-99e8-70fc4844a871",
+      "term": "menfi zarar",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "54aef52f-9e07-4d02-bc08-6df3b5448a9c",
+      "term": "cins tashihi",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2e4345f7-e546-40a0-acf8-7094e8642570",
+      "term": "nevi şahsına münhasır",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "0b0e56cf-a86b-42a2-9ca1-8b8e66d50733",
+      "term": "hilaf-ı hakikat",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "a742e12b-89e9-42e6-a59c-ca069ef2d91d",
+      "term": "elektronik haberleşme kanunu",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "ce26a5da-0497-47f2-ae72-b3f4e6e61af5",
+      "term": "hakkı hıyar",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "85e05f3c-8999-44f1-b08d-2466a835cd82",
+      "term": "müdahalenin meni",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "2f96dd71-f772-4ebe-ab3a-38d311191bc5",
+      "term": "bedelsiz temlik",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "0ddc7e61-ef2c-4337-97c9-7f4481fd1f21",
+      "term": "ademi ifa",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d3e22bfe-7945-4911-bec7-5fe283f2a0cb",
+      "term": "yapı alacaklısı ipoteği",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "50c7dbd6-a868-48d8-85f0-a79640d949a2",
+      "term": "kaynak hakkı",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "d2c01c25-be28-4398-a48c-9a869fe52de7",
+      "term": "adli zabıta",
+      "court": "danistay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "85deab24-c516-41ad-a26a-c441029d90d6",
+      "term": "adli tabip",
+      "court": "yargitay",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "22380a2e-5077-49e7-86dc-9cf7da53d6a4",
+      "term": "akarâtı mevkufe",
+      "court": "first_degree",
+      "limit": 5,
+      "status": "pending"
+    },
+    {
+      "query_id": "f708000b-8b11-4099-89e8-65115ead5608",
+      "term": "saik hatası",
+      "court": "bam",
+      "limit": 5,
+      "status": "pending"
+    }
+  ]
+}

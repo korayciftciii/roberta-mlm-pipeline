@@ -1,0 +1,28 @@
+# PyTorch CUDA 12.6
+--index-url https://download.pytorch.org/whl/cu126
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Core ML/NLP Libraries
+transformers>=4.30.0
+tokenizers>=0.13.0
+
+# Transformers Dependencies
+numpy>=1.17.0
+huggingface-hub>=0.20.0
+safetensors>=0.4.0
+pyyaml>=5.1
+packaging>=20.0
+filelock>=3.0.0
+regex>=2022.1.18
+
+# Data Processing
+ujson>=5.8.0
+tqdm>=4.65.0
+
+# String Matching
+pyahocorasick>=2.0.0
+
+# HTTP Requests
+requests>=2.31.0
