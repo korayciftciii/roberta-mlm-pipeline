@@ -1,6 +1,7 @@
 # Data directories
-data/raw/decisions
-data/raw/terms
+data/resources/decisions
+data/raw
+data/processed
 #Fetcher
 fetch_state.json
 # Python
