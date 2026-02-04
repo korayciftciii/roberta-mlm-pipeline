@@ -4,6 +4,7 @@ import re
 def normalize_text_for_search(text):
   
     if not text: return ""
+    text = unicodedata.normalize('NFKC', text)
     text = text.replace("İ", "i").replace("I", "ı").lower()
     
     replacements = {"â": "a", "î": "i", "û": "u", "Â": "a", "Î": "i", "Û": "u"}

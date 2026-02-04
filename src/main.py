@@ -12,27 +12,6 @@ import numpy as np
 worker_tokenizer = None
 worker_masker = None
 
-def validate_wwm(text, encoded, tokenizer):
-    """WWM'nin doğru çalıştığını kontrol et"""
-    tokens = tokenizer.convert_ids_to_tokens(encoded['input_ids'])
-    word_ids = encoded.word_ids()
-    
-    # Kelime gruplarını bul
-    groups = {}
-    for idx, wid in enumerate(word_ids):
-        if wid is not None:
-            groups.setdefault(wid, []).append(tokens[idx])
-    
-    # Tek kelimelik gruplar (hatalı WWM işareti)
-    single_token_words = [g for g in groups.values() if len(g) == 1]
-    multi_token_words = [g for g in groups.values() if len(g) > 1]
-    
-    # Sadece debug için print (production'da kapatılabilir)
-    # print(f"Tek token kelimeler: {len(single_token_words)}")
-    # print(f"Çok token kelimeler: {len(multi_token_words)}")
-    # if multi_token_words:
-    #     print(f"Örnek çok token: {multi_token_words[:3]}")
-
 def init_worker():
     """Worker başlangıç"""
     global worker_tokenizer, worker_masker
@@ -93,7 +72,7 @@ def process_file(filename):
                     else:
                         cleaned_word_ids.append(-1)
 
-                # Legal map
+                # Legal map - YENİ FONKSİYON ADI
                 legal_map, phrase_spans = worker_masker.get_legal_word_map(
                     text, all_offsets, cleaned_word_ids
                 )
@@ -130,6 +109,8 @@ def process_file(filename):
 
     except Exception as e:
         print(f"HATA ({filename}): {e}")
+        import traceback
+        traceback.print_exc()  # Detaylı hata için
         return
 
 def _process_file_wrapper(filename):
@@ -144,7 +125,9 @@ def main():
     
     print(f"--- SMART LEGAL MASKING ---")
     print(f"Model: {Config.MODEL_NAME}")
+    print(f"Terms: {Config.TERMS_FILE}")
     print(f"Files: {len(files)} | Workers: {num_cores}")
+    print(f"Config: MASK={Config.BASE_MASK_PROB}, LEGAL_RATIO={Config.BASE_LEGAL_RATIO}, PHRASE_PRIO={Config.PHRASE_PRIORITY}")
     print("-" * 50)
     
     total_samples = 0
@@ -170,6 +153,7 @@ def main():
 
     print(f"\n--- TAMAMLANDI ---")
     print(f"Toplam: {total_samples:,} samples")
+    print(f"Output: {Config.OUTPUT_FILE}")
 
 if __name__ == "__main__":
     main()

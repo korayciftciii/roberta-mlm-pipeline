@@ -4,6 +4,7 @@ import random
 import numpy as np
 from utils import normalize_text_for_search
 from collections import defaultdict
+from config import Config
 
 class SmartLegalMasker:
     def __init__(self, tokenizer, terms_file_path):
@@ -11,11 +12,16 @@ class SmartLegalMasker:
         self.mask_token_id = tokenizer.mask_token_id
         self.vocab_size = tokenizer.vocab_size
         
-        # Config değerlerini burada tanımla (hardcoded veya import)
-        self.MIN_MASK_PROB = 0.12
-        self.MAX_MASK_PROB = 0.28
-        self.MIN_LEGAL_RATIO = 0.35
-        self.MAX_LEGAL_RATIO = 0.80
+        # Config'den değerleri al
+        self.MIN_MASK_PROB = getattr(Config, 'MIN_MASK_PROB', 0.12)
+        self.MAX_MASK_PROB = getattr(Config, 'MAX_MASK_PROB', 0.28)
+        self.MIN_LEGAL_RATIO = getattr(Config, 'MIN_LEGAL_RATIO', 0.35)
+        self.MAX_LEGAL_RATIO = getattr(Config, 'MAX_LEGAL_RATIO', 0.80)
+        
+        # Yeni config değerleri
+        self.PHRASE_PRIORITY = getattr(Config, 'PHRASE_PRIORITY', 5.0)
+        self.LEGAL_MASK_AGGRESSIVE = getattr(Config, 'LEGAL_MASK_AGGRESSIVE', 0.90)
+        self.RANDOM_MASK_STANDARD = getattr(Config, 'RANDOM_MASK_STANDARD', 0.80)
         
         # Hızlı stopword check için token ID seti
         self.protected_ids = self._build_protected_set()
@@ -28,7 +34,9 @@ class SmartLegalMasker:
         """Token ID'lere çevir - hızlı lookup"""
         protected_words = {
             "ve", "veya", "ile", "bir", "bu", "şu", "o", "ki", 
-            "da", "de", "ama", "fakat", "için", "gibi", "çünkü"
+            "da", "de", "ama", "fakat", "için", "gibi", "çünkü",
+            ".", ",", ":", ";", "!", "?", "(", ")", "[", "]", "{", "}", 
+            "-", "/", "\\", "'", "\"", "`", "’", "“", "”", "…", "«", "»"
         }
         protected_ids = set()
         for word in protected_words:
@@ -40,37 +48,47 @@ class SmartLegalMasker:
     def _load_phrases(self, path):
         """Çok kelimeli terimleri yükle"""
         phrases = []
-        with open(path, 'r', encoding='utf-8') as f:
-            for line in f:
-                term = line.strip()
-                if len(term.split()) > 1:
-                    phrases.append(normalize_text_for_search(term))
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    term = line.strip()
+                    if len(term.split()) > 1:
+                        phrases.append(normalize_text_for_search(term))
+        except Exception as e:
+            print(f"UYARI: Phrase dosyası okunamadı: {e}")
         phrases.sort(key=len, reverse=True)
+        print(f"-> {len(phrases)} çok kelimeli terim yüklendi")
         return phrases
 
     def _build_automaton(self, path):
         A = ahocorasick.Automaton()
-        with open(path, 'r', encoding='utf-8') as f:
-            for idx, line in enumerate(f):
-                term = line.strip()
-                if len(term) < 2:
-                    continue
-                
-                norm = normalize_text_for_search(term)
-                
-                # Priority belirle
-                priority = 1.0
-                word_count = len(term.split())
-                
-                if word_count > 1:
-                    priority = 1.5  # Çok kelimeliler
-                if any(k in norm for k in ["kanun", "madde", "fıkra", "bend"]):
-                    priority = 2.0  # Kanun referansları
-                elif any(k in norm for k in ["ceza", "suç", "tazminat", "hapis"]):
-                    priority = 1.8  # Ceza hukuku
-                
-                A.add_word(norm, (idx, norm, priority))
-        A.make_automaton()
+        term_count = 0
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                for idx, line in enumerate(f):
+                    term = line.strip()
+                    if len(term) < 2:
+                        continue
+                    
+                    norm = normalize_text_for_search(term)
+                    
+                    # Priority belirle
+                    priority = 1.0
+                    word_count = len(term.split())
+                    
+                    if word_count > 1:
+                        priority = 1.5
+                    if any(k in norm for k in ["kanun", "madde", "fıkra", "bend"]):
+                        priority = 2.0
+                    elif any(k in norm for k in ["ceza", "suç", "tazminat", "hapis"]):
+                        priority = 1.8
+                    
+                    A.add_word(norm, (idx, norm, priority))
+                    term_count += 1
+            A.make_automaton()
+            print(f"-> {term_count} terim automaton'a yüklendi")
+        except Exception as e:
+            print(f"KRİTİK HATA: Automaton oluşturulamadı: {e}")
         return A
 
     def get_legal_word_map(self, text, offsets, word_ids):
@@ -92,7 +110,6 @@ class SmartLegalMasker:
                     char_to_word[c] = wid
 
         # 1. Tek kelimeliler (Aho-Corasick)
-        # Önce bunları işle
         for end_idx, (_, norm_term, priority) in self.automaton.iter(norm_text):
             start_idx = end_idx - len(norm_term) + 1
             mid = (start_idx + end_idx + 1) // 2
@@ -119,9 +136,9 @@ class SmartLegalMasker:
                 if len(covered_wids) >= 2:
                     min_wid, max_wid = min(covered_wids), max(covered_wids)
                     
-                    # BU ÖNEMLİ: Phrase içindeki TÜM kelimelere aynı priority
+                    # Phrase içindeki TÜM kelimelere PHRASE_PRIORITY
                     for wid in range(min_wid, max_wid + 1):
-                        legal_map[wid] = 3.0  # En yüksek priority
+                        legal_map[wid] = self.PHRASE_PRIORITY
                         
                     phrase_word_groups.append((min_wid, max_wid, phrase))
                 
@@ -144,7 +161,7 @@ class SmartLegalMasker:
             mask_prob = 0.12
             legal_ratio = 0.35
         
-        # Sınırları zorla (self. ile eriş)
+        # Sınırları zorla
         mask_prob = max(self.MIN_MASK_PROB, min(self.MAX_MASK_PROB, mask_prob))
         legal_ratio = max(self.MIN_LEGAL_RATIO, min(self.MAX_LEGAL_RATIO, legal_ratio))
         
@@ -179,67 +196,71 @@ class SmartLegalMasker:
             phrase_words.update(range(start_wid, end_wid + 1))
 
         # Grupları hazırla
-        legal_groups = []
-        random_groups = []
+        legal_groups = []      # (is_phrase, priority, tokens)
+        random_groups = []     # (tokens)
         
         for wid in unique_wids:
             tokens = word_to_tokens[wid]
             
-            # Stopword check (hızlı)
+            # Stopword check
             if any(input_ids[t] in self.protected_ids for t in tokens):
                 continue
             
             if wid in legal_map:
                 priority = legal_map[wid]
-                if wid in phrase_words:
-                    priority *= 1.2
-                legal_groups.append((priority, tokens))
+                is_phrase = wid in phrase_words
+                legal_groups.append((is_phrase, priority, tokens))
             else:
                 random_groups.append(tokens)
 
-        # Bütçe hesapla - LEGAL ÖNCELİKLİ
+        # Bütçe hesapla
         maskable = len(legal_groups) + len(random_groups)
         total_mask = max(1, int(maskable * mask_prob))
         legal_budget = int(total_mask * legal_ratio)
+
+        # SEÇİM: Önce PHRASE'leri, sonra diğer legal'leri
+        selected = []
         
-        # Eğer yeterli legal varsa, önce hepsini al
-        if len(legal_groups) >= legal_budget:
-            # Sadece priority en yüksek legal'leri seç
-            legal_groups.sort(key=lambda x: -x[0])
-            selected = [g[1] for g in legal_groups[:legal_budget]]
-            
-            # Kalanı random'dan tamamla
-            remaining = total_mask - len(selected)
-            random.shuffle(random_groups)
-            selected.extend(random_groups[:remaining])
-            
-        else:
-            # Legal yetmiyorsa hepsini al + random tamamla
-            selected = [g[1] for g in legal_groups]
-            remaining = total_mask - len(selected)
-            random.shuffle(random_groups)
-            selected.extend(random_groups[:remaining])
+        # 1. TÜM phrase'leri seç (priority >= PHRASE_PRIORITY)
+        phrase_groups = [g for g in legal_groups if g[0]]  # is_phrase=True
+        other_legal = [g for g in legal_groups if not g[0]]
         
-        # Maskeleme (80/10/10) - LEGAL'lerde daha agresif
+        selected.extend([g[2] for g in phrase_groups])
+        
+        # 2. Kalan bütçeyle diğer legal'leri seç
+        remaining_budget = legal_budget - len(phrase_groups)
+        if remaining_budget > 0:
+            other_legal.sort(key=lambda x: -x[1])  # Priority'ye göre
+            selected.extend([g[2] for g in other_legal[:remaining_budget]])
+        
+        # 3. Eksik varsa random'dan tamamla
+        shortfall = total_mask - len(selected)
+        if shortfall > 0:
+            random.shuffle(random_groups)
+            selected.extend(random_groups[:shortfall])
+
+        # Maskeleme
         for group in selected:
-            is_legal_group = any(wid in legal_map for wid in [word_ids[i] for i in group])
+            # Bu grup legal/phrase mi?
+            group_wids = {word_ids[i] for i in group if i < len(word_ids)}
+            is_legal_group = any(wid in legal_map for wid in group_wids)
+            is_phrase_group = any(wid in phrase_words for wid in group_wids)
             
             for idx in group:
                 labels[idx] = input_ids[idx]
                 r = random.random()
                 
                 if is_legal_group:
-                    # Legal kelimelerde %90 MASK (daha agresif)
-                    if r < 0.90:
+                    # Legal/Phrase: AGGRESSIVE
+                    if r < self.LEGAL_MASK_AGGRESSIVE:
                         input_ids_tensor[idx] = self.mask_token_id
-                    elif r < 0.95:
+                    elif r < (self.LEGAL_MASK_AGGRESSIVE + 0.05):
                         input_ids_tensor[idx] = random.randint(0, self.vocab_size - 1)
-                    # %5 keep
                 else:
-                    # Random kelimelerde standart 80/10/10
-                    if r < 0.8:
+                    # Random: STANDARD
+                    if r < self.RANDOM_MASK_STANDARD:
                         input_ids_tensor[idx] = self.mask_token_id
-                    elif r < 0.9:
+                    elif r < (self.RANDOM_MASK_STANDARD + 0.10):
                         input_ids_tensor[idx] = random.randint(0, self.vocab_size - 1)
         
         return input_ids_tensor.tolist(), labels

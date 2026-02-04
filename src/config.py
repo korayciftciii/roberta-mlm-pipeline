@@ -6,7 +6,7 @@ class Config:
 
     # Veri dizinleri
     DATA_DIR = os.path.join(ROOT_DIR, "data", "resources", "decisions")
-    TERMS_FILE = os.path.join(ROOT_DIR, "data", "resources", "terms", "legal_terms.txt")
+    TERMS_FILE = os.path.join(ROOT_DIR, "data", "resources", "terms", "legal_terms_cleaned.txt")
     OUTPUT_FILE = os.path.join(ROOT_DIR, "data", "processed", "train_data_wwm.jsonl")
 
     # Model ayarları
@@ -25,7 +25,10 @@ class Config:
     MAX_MASK_PROB = 0.28
     MIN_LEGAL_RATIO = 0.35
     MAX_LEGAL_RATIO = 0.80
+    PHRASE_PRIORITY=5.0
 
+    LEGAL_MASK_AGGRESSIVE=0.90
+    RANDOM_MASK_STANDARD=0.80
     # Seed
     BASE_SEED = 42
     
