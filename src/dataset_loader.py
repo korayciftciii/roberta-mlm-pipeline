@@ -34,7 +34,7 @@ from torch.utils.data import Dataset, IterableDataset
 from transformers import PreTrainedTokenizerBase
 from tqdm import tqdm
 
-from utils import aggressive_legal_cleaner
+
 
 
 @dataclass
@@ -93,8 +93,7 @@ class LegalDocumentDataset(Dataset):
             print(f"[WARNING] Could not read {filepath}: {e}")
             return
 
-        # Clean text
-        text = aggressive_legal_cleaner(raw_text)
+        text = raw_text.strip()
         if len(text) < self.min_chunk_length:
             return
 
@@ -252,7 +251,7 @@ class StreamingLegalDataset(IterableDataset):
         except Exception:
             return
 
-        text = aggressive_legal_cleaner(raw_text)
+        text = raw_text.strip()
         if len(text) < self.min_chunk_length:
             return
 

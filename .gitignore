@@ -2,6 +2,7 @@
 data/resources/decisions
 data/raw
 data/processed
+data/test_reports
 #Fetcher
 fetch_state.json
 # Python

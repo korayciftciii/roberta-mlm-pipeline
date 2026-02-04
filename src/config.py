@@ -7,7 +7,8 @@ class Config:
     # Veri dizinleri
     DATA_DIR = os.path.join(ROOT_DIR, "data", "resources", "decisions")
     TERMS_FILE = os.path.join(ROOT_DIR, "data", "resources", "terms", "legal_terms.txt")
-    OUTPUT_FILE = os.path.join(ROOT_DIR, "data", "processed", "train_data.jsonl")
+    OUTPUT_FILE = os.path.join(ROOT_DIR, "data", "processed", "train_data_wwm.jsonl")
+    STATE_FILE = os.path.join(ROOT_DIR, "data", "processed", "masking_state.json")
 
     # Model ayarları
     MODEL_NAME = "FacebookAI/xlm-roberta-base"  # RoBERTa modeli
