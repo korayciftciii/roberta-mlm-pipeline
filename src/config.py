@@ -8,18 +8,26 @@ class Config:
     DATA_DIR = os.path.join(ROOT_DIR, "data", "resources", "decisions")
     TERMS_FILE = os.path.join(ROOT_DIR, "data", "resources", "terms", "legal_terms.txt")
     OUTPUT_FILE = os.path.join(ROOT_DIR, "data", "processed", "train_data_wwm.jsonl")
-    STATE_FILE = os.path.join(ROOT_DIR, "data", "processed", "masking_state.json")
 
     # Model ayarları
-    MODEL_NAME = "FacebookAI/xlm-roberta-base"  # RoBERTa modeli
+    MODEL_NAME = "FacebookAI/xlm-roberta-base"
 
     # Tokenizasyon parametreleri
-    MAX_SEQ_LEN = 512  # Modelin maksimum giriş uzunluğu
-    WINDOW_STRIDE = 256  # Kayar pencere adımı (%50 Overlap)
+    MAX_SEQ_LEN = 512
+    WINDOW_STRIDE = 256
 
-    # Maskeleme parametreleri
-    MASK_PROB = 0.20  # Toplam maskeleme oranı
-    LEGAL_FOCUS_RATIO = 0.60  # Maskeleme bütçesinin ne kadarı hukuk terimlerine gidecek?
+    # Maskeleme parametreleri (Dinamik - bunlar maksimum değerler)
+    BASE_MASK_PROB = 0.20
+    BASE_LEGAL_RATIO = 0.60
+    
+    # Dinamik maskeleme sınırları
+    MIN_MASK_PROB = 0.12
+    MAX_MASK_PROB = 0.28
+    MIN_LEGAL_RATIO = 0.35
+    MAX_LEGAL_RATIO = 0.80
 
-    # Seed (Tekrarlanabilirlik için)
-    SEED = 42
+    # Seed
+    BASE_SEED = 42
+    
+    # Performance
+    USE_MULTIPROCESSING = True

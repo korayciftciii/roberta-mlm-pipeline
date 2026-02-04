@@ -1,48 +1,66 @@
 import os
-import json
+import ujson as json  # Hız için ujson kullandım
 import re
 import sys
 from config import Config
 
 # --- CONFIGURATION ---
+# Ham verilerin olduğu yer
 INPUT_DIR = os.path.join(Config.ROOT_DIR, "data", "raw", "jsonl")
+# Temizlenmiş verilerin gideceği yer (Masker burayı okuyacak)
 OUTPUT_DIR = os.path.join(Config.ROOT_DIR, "data", "resources", "decisions")
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+def fix_broken_spacing(text):
+    """
+    Yargıtay kararlarındaki kronik boşluk sorunlarını çözer.
+    """
+    # 1. T. C. -> T.C. (Nokta sonrası tek harf boşluklarını sil)
+    # (?<=\.) : Öncesinde nokta var mı?
+    # \s+     : Boşluk
+    # (?=[A-ZİĞÜŞÖÇ]\.) : Sonrasında Harf+Nokta var mı?
+    text = re.sub(r'(?<=\.)\s+(?=[A-ZİĞÜŞÖÇ]\.)', '', text)
+    
+    # 2. T U T U K L U -> TUTUKLU (Ayrık yazılan kelimeleri birleştir)
+    # Mantık: En az 3 harf boyunca "Harf+Boşluk" örüntüsü varsa yakala ve birleştir.
+    def replacer(match):
+        return match.group(0).replace(" ", "")
+
+    # Regex: Kelime sınırı -> (Harf + Boşluk) x 2 veya daha fazla -> Harf -> Kelime sınırı
+    # Hem BÜYÜK harfleri hem küçük harfleri kapsar.
+    pattern = r'\b(?:[A-ZİĞÜŞÖÇa-zıüğşöç]\s+){2,}[A-ZİĞÜŞÖÇa-zıüğşöç]\b'
+    text = re.sub(pattern, replacer, text)
+
+    return text
+
 def clean_text(text):
     """
     Cleans the decision text for WWM.
-    1. Splits text by "İçtihat Metni" (case-insensitive) and takes the second part.
-       If NOT found, keeps the entire text.
-    2. Replaces newlines (\n) and tabs (\t) with a single space.
-    3. Collapses multiple spaces into one.
-    4. Trims leading/trailing whitespace.
     """
     if not text:
         return None
     
     # 1. Extraction Strategy (Case Insensitive)
-    # Look for "İçtihat Metni" to strip the header info
-    # using regex split for case-insensitivity
+    # "İçtihat Metni" ibaresinden öncesini (başlıkları) at.
     parts = re.split(r"İçtihat Metni", text, maxsplit=1, flags=re.IGNORECASE)
     
     if len(parts) > 1:
-        # Found it, take everything AFTER the phrase
         content = parts[1]
     else:
-        # Fallback: Phrase not found, use original text
         content = text
 
-    # 2. whitespace Normalization
-    # Replace \n and \t with space
+    # 2. Whitespace Normalization
     content = content.replace("\n", " ").replace("\t", " ")
     
-    # 3. Collapse multiple spaces
+    # 3. FIX BROKEN SPACING (En Önemli Kısım Burası!)
+    content = fix_broken_spacing(content)
+    
+    # 4. Collapse multiple spaces (Çift boşlukları teke indir)
     content = re.sub(r'\s+', ' ', content)
     
-    # 4. Remove leading/trailing quotes if they exist (common in some JSON exports)
+    # 5. Tırnak temizliği
     content = content.strip().strip('"').strip("'").strip()
 
     return content
@@ -52,7 +70,7 @@ def process_file(filename):
     Processes a single JSONL file.
     """
     input_path = os.path.join(INPUT_DIR, filename)
-    output_filename = f"p_{filename}" # Prefix 'p_' for processed
+    output_filename = f"{filename}" # Aynı isimle kaydedebiliriz veya prefix ekleyebilirsin
     output_path = os.path.join(OUTPUT_DIR, output_filename)
     
     print(f"\n Processing: {filename}...")
@@ -79,7 +97,8 @@ def process_file(filename):
                     
                     cleaned_text = clean_text(raw_text)
                     
-                    if cleaned_text and len(cleaned_text) > 10: # Basic length check
+                    # 50 karakterden kısa kararlar gürültüdür, at gitsin.
+                    if cleaned_text and len(cleaned_text) > 50: 
                         new_record = {
                             "id": doc_id,
                             "text": cleaned_text
@@ -89,7 +108,7 @@ def process_file(filename):
                     else:
                         total_skipped += 1
                         
-                except json.JSONDecodeError:
+                except ValueError: # json decode error
                     print(f"   ⚠️ Warning: Failed to decode JSON at line {total_read}")
                     continue
                     
@@ -100,13 +119,16 @@ def process_file(filename):
     print(f" Complete.")
     print(f"      - Read: {total_read}")
     print(f"      - Saved: {total_saved}")
-    print(f"      - Skipped: {total_skipped} (Empty text)")
+    print(f"      - Skipped: {total_skipped} (Empty/Short)")
 
 def main():
-    print("Data Preprocessor for WWM Started")
+    print("=== Data Preprocessor for WWM Started ===")
     print(f"Input: {INPUT_DIR}")
     print(f"Output: {OUTPUT_DIR}")
     
+    # Create Output Dir if not exists
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     # Get all .jsonl files
     files = [f for f in os.listdir(INPUT_DIR) if f.endswith(".jsonl")]
     
@@ -114,22 +136,12 @@ def main():
         print("No JSONL files found in input directory.")
         return
 
-    print(f"Found {len(files)} files queue.\n")
+    print(f"Found {len(files)} files in queue.\n")
     
     for i, filename in enumerate(files):
         process_file(filename)
-        
-        # Interactive Check
-        if i < len(files) - 1:
-            while True:
-                choice = input(f"\n>>> Continue to next file ({i+2}/{len(files)})? (y/n): ").strip().lower()
-                if choice == 'y':
-                    break
-                elif choice == 'n':
-                    print("\nProcessing stopped by user.")
-                    sys.exit(0)
     
-    print("\nAll files processed successfully!")
+    print("\n✅ All files processed successfully! Now run main.py")
 
 if __name__ == "__main__":
     main()

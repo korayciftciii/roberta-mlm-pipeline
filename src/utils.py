@@ -2,37 +2,47 @@ import unicodedata
 import re
 
 def normalize_text_for_search(text):
-    """
-    Aho-Corasick araması için metni standartlaştırır.
-    KRİTİK KURAL: Girdi ve çıktı uzunluğu ASLA değişmemelidir.
-    Karakter silmek yok, sadece dönüşüm var.
-    """
-    if not text:
-        return ""
-    
-    # 1. Türkçe Karakter Dönüşümü (Uzunluk Korunur)
-    # Python'un standart lower()'ı "İ"yi "i" yaparken bazen byte boyutu değişebilir 
-    # ama string length genelde korunur. Yine de elle yapmak en güvenlisidir.
+  
+    if not text: return ""
     text = text.replace("İ", "i").replace("I", "ı").lower()
     
-    # 2. Şapkalı Karakterler (Accent Removal) - OPSİYONEL
-    # Yargıtay kararlarında "kâğıt" ve "kağıt" karışık kullanılır.
-    # Şapkayı kaldırmak eşleşme şansını artırır.
-    # ANCAK: Şapka kalkınca uzunluk değişmemeli.
-    # unicodedata.normalize('NFD', text) bazen karakteri böler (a + ^).
-    # Biz basitçe replace yapalım, garanti olsun.
-    
-    replacements = {
-        "â": "a", "î": "i", "û": "u",
-        "Â": "a", "Î": "i", "Û": "u"
-    }
+    replacements = {"â": "a", "î": "i", "û": "u", "Â": "a", "Î": "i", "Û": "u"}
     for old, new in replacements.items():
         text = text.replace(old, new)
-
-    # 3. Noktalama İşaretleri: SİLMEK YOK!
-    # "bi-hükm'ül-kanun" terimini bulmak istiyoruz.
-    # Eğer metinde tire varsa, ararken de tire olmalı. 
-    # O yüzden re.sub ile silme işlemini TAMAMEN İPTAL EDİYORUZ.
-    # Metin olduğu gibi kalsın.
-    
+        
     return text
+
+def fix_broken_spacing(text):
+    """
+    'T U T U K L U' -> 'TUTUKLU'
+    'T. C.' -> 'T.C.'
+    Dönüşümlerini yapar.
+    """
+    if not text: return ""
+
+    # 1. Satırları düzelt
+    text = text.replace("\n", " ").replace("\r", " ")
+
+    # 2. T. C. -> T.C. (Nokta sonrası tek harf boşluklarını sil)
+    # (?<=\.) : Öncesinde nokta var mı?
+    # \s+     : Boşluk
+    # (?=[A-ZİĞÜŞÖÇ]\.) : Sonrasında Harf+Nokta var mı?
+    text = re.sub(r'(?<=\.)\s+(?=[A-ZİĞÜŞÖÇ]\.)', '', text)
+    
+    # 3. A Y R I K  H A R F L E R İ  B İ R L E Ş T İ R
+    # En az 3 harflik (H A R) zincirleri yakalar.
+    def replacer(match):
+        return match.group(0).replace(" ", "")
+
+    # Regex: Kelime sınırı -> (Harf + Boşluk) x 2 veya daha fazla -> Harf -> Kelime sınırı
+    pattern = r'\b(?:[A-ZİĞÜŞÖÇa-zıüğşöç]\s+){2,}[A-ZİĞÜŞÖÇa-zıüğşöç]\b'
+    text = re.sub(pattern, replacer, text)
+
+    # 4. Fazla boşlukları temizle
+    text = re.sub(r'\s+', ' ', text)
+    
+    return text.strip()
+
+def aggressive_legal_cleaner(text):
+    # Ana temizleyici fonksiyonumuz artık bu
+    return fix_broken_spacing(text)
