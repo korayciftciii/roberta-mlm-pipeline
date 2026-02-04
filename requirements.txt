@@ -1,28 +1,111 @@
-# PyTorch CUDA 12.6
---index-url https://download.pytorch.org/whl/cu126
+# =============================================================================
+# Turkish Legal MLM Training Pipeline - Requirements
+# =============================================================================
+# Installation: pip install -r requirements.txt
+#
+# For GPU support with CUDA 12.6:
+# pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# PyTorch - Core Deep Learning Framework
+# -----------------------------------------------------------------------------
+# For CPU-only: pip install torch torchvision torchaudio
+# For CUDA 12.6: Use the --extra-index-url flag above
 torch>=2.0.0
 torchvision>=0.15.0
 torchaudio>=2.0.0
 
-# Core ML/NLP Libraries
-transformers>=4.30.0
-tokenizers>=0.13.0
+# -----------------------------------------------------------------------------
+# Hugging Face Ecosystem
+# -----------------------------------------------------------------------------
+# Transformers: Pre-trained models and training utilities
+transformers>=4.35.0
 
-# Transformers Dependencies
-numpy>=1.17.0
+# Tokenizers: Fast tokenization with Rust backend
+tokenizers>=0.14.0
+
+# Datasets: Efficient data loading and processing
+datasets>=2.14.0
+
+# Accelerate: Multi-GPU/TPU training and mixed precision
+accelerate>=0.24.0
+
+# Hub: Model and dataset repository
 huggingface-hub>=0.20.0
-safetensors>=0.4.0
-pyyaml>=5.1
-packaging>=20.0
-filelock>=3.0.0
-regex>=2022.1.18
 
+# Safetensors: Safe tensor serialization
+safetensors>=0.4.0
+
+# Evaluate: Metrics computation
+evaluate>=0.4.0
+
+# -----------------------------------------------------------------------------
+# Experiment Tracking & Monitoring
+# -----------------------------------------------------------------------------
+# Weights & Biases: Experiment tracking
+wandb>=0.16.0
+
+# TensorBoard: Visualization
+tensorboard>=2.14.0
+
+# -----------------------------------------------------------------------------
 # Data Processing
+# -----------------------------------------------------------------------------
+# NumPy: Numerical computing
+numpy>=1.24.0
+
+# Pandas: Data manipulation (optional, for analysis)
+pandas>=2.0.0
+
+# UJSON: Fast JSON parsing
 ujson>=5.8.0
+
+# TQDM: Progress bars
 tqdm>=4.65.0
 
-# String Matching
+# -----------------------------------------------------------------------------
+# String Matching & NLP Utilities
+# -----------------------------------------------------------------------------
+# Aho-Corasick: Efficient multi-pattern matching for legal terms
 pyahocorasick>=2.0.0
 
-# HTTP Requests
+# Regex: Advanced regular expressions
+regex>=2023.0.0
+
+# -----------------------------------------------------------------------------
+# Configuration & Utilities
+# -----------------------------------------------------------------------------
+# PyYAML: YAML configuration files
+pyyaml>=6.0
+
+# Packaging: Version handling
+packaging>=21.0
+
+# Filelock: File locking for safe concurrent access
+filelock>=3.12.0
+
+# Typing Extensions: Enhanced type hints
+typing_extensions>=4.5.0
+
+# -----------------------------------------------------------------------------
+# HTTP & Networking
+# -----------------------------------------------------------------------------
+# Requests: HTTP library
 requests>=2.31.0
+
+# -----------------------------------------------------------------------------
+# Optional: Development & Testing
+# -----------------------------------------------------------------------------
+# pytest>=7.0.0
+# black>=23.0.0
+# ruff>=0.1.0
+# mypy>=1.0.0
+
+# -----------------------------------------------------------------------------
+# Optional: Distributed Training
+# -----------------------------------------------------------------------------
+# For DeepSpeed integration (optional, advanced):
+# deepspeed>=0.10.0
+
+# For FSDP (Fully Sharded Data Parallel) - included in PyTorch 2.0+

@@ -1,7 +1,9 @@
 # Data directories
-data/raw/
-archieve/
-
+data/resources/decisions
+data/raw
+data/processed
+#Fetcher
+fetch_state.json
 # Python
 __pycache__/
 *.py[cod]
@@ -79,3 +81,5 @@ Thumbs.db
 *.temp
 *.bak
 *.swp
+
+

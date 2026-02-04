@@ -1,0 +1,71 @@
+# =============================================================================
+# Accelerate Configuration for Turkish Legal MLM Training
+# =============================================================================
+# Usage:
+#   1. Run: accelerate config --config_file accelerate_config.yaml
+#   2. Or copy this file to ~/.cache/huggingface/accelerate/default_config.yaml
+#   3. Launch training: accelerate launch src/train.py
+#
+# For multi-GPU: Set num_processes to number of GPUs
+# For single GPU: Keep num_processes at 1
+# =============================================================================
+
+compute_environment: LOCAL_MACHINE
+debug: false
+distributed_type: MULTI_GPU
+downcast_bf16: 'no'
+
+# =============================================================================
+# Machine Configuration
+# =============================================================================
+machine_rank: 0
+main_process_ip: null
+main_process_port: null
+main_training_function: main
+
+# Number of GPUs to use (set to your available GPUs)
+num_machines: 1
+num_processes: 1
+
+# =============================================================================
+# Mixed Precision Settings
+# =============================================================================
+# Options: 'no', 'fp16', 'bf16', 'fp8'
+# - fp16: For NVIDIA GPUs (Volta, Turing, Ampere, Hopper)
+# - bf16: For Ampere+ GPUs (A100, H100) or TPUs
+# - no: Full precision (slower, more memory)
+mixed_precision: 'fp16'
+
+# =============================================================================
+# Optimization Features
+# =============================================================================
+# Gradient Checkpointing (saves memory at cost of speed)
+# Enable in TrainingArguments instead
+
+# DeepSpeed (advanced distributed training)
+use_cpu: false
+rdzv_backend: static
+same_network: true
+
+# TPU Configuration (if applicable)
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+
+# =============================================================================
+# GPU Memory Optimization
+# =============================================================================
+# FSDP (Fully Sharded Data Parallel) - for very large models
+# fsdp_config:
+#   fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+#   fsdp_backward_prefetch_policy: BACKWARD_PRE
+#   fsdp_offload_params: false
+#   fsdp_sharding_strategy: FULL_SHARD
+#   fsdp_state_dict_type: SHARDED_STATE_DICT
+
+# DeepSpeed Configuration (alternative to FSDP)
+# deepspeed_config:
+#   gradient_accumulation_steps: 4
+#   zero_stage: 2
+#   offload_optimizer_device: none
+#   offload_param_device: none

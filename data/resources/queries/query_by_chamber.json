@@ -1,0 +1,354 @@
+[
+    {
+        "chamber": "1. Hukuk Dairesi",
+        "queries": [
+            "Gayrimenkul Mülkiyeti",
+            "Tapu Sicili",
+            "Tapu iptal ve tescil",
+            "Müdahalenin men'i",
+            "Ecrimisil",
+            "Zilyetlik",
+            "Mülkiyet hakkı"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "2. Hukuk Dairesi",
+        "queries": [
+            "Medeni Hukuk",
+            "Aile Hukuku",
+            "Boşanma",
+            "Velayet",
+            "Nafaka",
+            "Mal rejimi",
+            "Evliliğin butlanı",
+            "Soybağı"
+        ],
+        "weight": 4500
+    },
+    {
+        "chamber": "3. Hukuk Dairesi",
+        "queries": [
+            "Sebepsiz zenginleşme",
+            "Kusursuz sorumluluk",
+            "Abonelik Sözleşmeleri",
+            "Adi Ortaklık",
+            "Kira Sözleşmeleri",
+            "Sözleşme Hukuku",
+            "Tüketici Hukuku",
+            "Kira tespiti",
+            "Tahliye",
+            "Ayıplı mal",
+            "Alacak davası"
+        ],
+        "weight": 5000
+    },
+    {
+        "chamber": "4. Hukuk Dairesi",
+        "queries": [
+            "Haksız Fiil Tazminatı",
+            "Trafik Kazalarından Kaynaklanan Tazminat",
+            "Sigorta Hukuku",
+            "Maddi ve manevi tazminat",
+            "Rücuen tazminat",
+            "Destekten yoksun kalma",
+            "Kaza raporu"
+        ],
+        "weight": 4500
+    },
+    {
+        "chamber": "5. Hukuk Dairesi",
+        "queries": [
+            "Kamulaştırma",
+            "Mülkiyet Hakkının İhlali",
+            "Kat Mülkiyeti",
+            "Kamulaştırmasız el atma",
+            "Ortak gider",
+            "Yönetim planı",
+            "Kat malikleri kurulu"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "6. Hukuk Dairesi",
+        "queries": [
+            "Eser sözleşmeleri",
+            "Ticaret hukuku",
+            "Kooperatifler hukuku",
+            "Kat karşılığı inşaat sözleşmesi",
+            "Ayıplı ifa",
+            "Hakediş",
+            "Genel kurul iptali"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "7. Hukuk Dairesi",
+        "queries": [
+            "Şahsi Haklar",
+            "Sınırlı Ayni Haklar",
+            "Kamu Orta Malları",
+            "Gayrimenkul Mülkiyetinin Sınırları",
+            "Ortaklığın Giderilmesi",
+            "Miras Hukuku",
+            "Muris muvazaası",
+            "Vasiyetname",
+            "Tenkis",
+            "Tereke"
+        ],
+        "weight": 4500
+    },
+    {
+        "chamber": "8. Hukuk Dairesi",
+        "queries": [
+            "Kadastro Hukuku",
+            "Tüzel Kişiler",
+            "Kadastro tespiti",
+            "Sınır uyuşmazlığı",
+            "Dernek ve vakıflar",
+            "Zilyetlikle iktisap"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "9. Hukuk Dairesi",
+        "queries": [
+            "İş Hukuku",
+            "Kıdem tazminatı",
+            "İhbar tazminatı",
+            "İşe iade",
+            "Mobbing",
+            "Fazla mesai",
+            "Hizmet tespiti"
+        ],
+        "weight": 5000
+    },
+    {
+        "chamber": "10. Hukuk Dairesi",
+        "queries": [
+            "Sosyal Güvenlik Hukuku",
+            "Emeklilik",
+            "İş kazası",
+            "Maluliyet",
+            "Sigortalılık süresi",
+            "Rücu davaları"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "11. Hukuk Dairesi",
+        "queries": [
+            "Ticaret Hukuku",
+            "Sigorta Hukuku",
+            "Bankalar Hukuku",
+            "Haksız rekabet",
+            "Marka tecavüzü",
+            "Çek iptali",
+            "Kredi sözleşmesi",
+            "Taşıma hukuku"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "12. Hukuk Dairesi",
+        "queries": [
+            "İcra ve İflas Hukuku",
+            "İcra takibi",
+            "Ödeme emri",
+            "Haciz",
+            "Borca itiraz",
+            "İflasın ertelenmesi",
+            "Sıra cetveli",
+            "Şikayet"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "1. Ceza Dairesi",
+        "queries": [
+            "Kasten Öldürme",
+            "Cinayet",
+            "Müebbet hapis",
+            "Haksız tahrik",
+            "Meşru müdafaa",
+            "İntihara yönlendirme",
+            "Kasten yaralama",
+            "Neticesi sebebiyle ağırlaşmış yaralama"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "2. Ceza Dairesi",
+        "queries": [
+            "Hırsızlık",
+            "Konut dokunulmazlığının ihlali",
+            "Mala zarar verme",
+            "İbadethanelere zarar verme",
+            "Hileli iflas",
+            "Karşılıksız yararlanma",
+            "Gece vakti hırsızlık"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "3. Ceza Dairesi",
+        "queries": [
+            "Anayasayı ihlal",
+            "Devletin birliği ve ülke bütünlüğü",
+            "Silahlı örgüt",
+            "Casusluk",
+            "Siyasal casusluk",
+            "Cumhurbaşkanına hakaret",
+            "Hükümete karşı suç"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "4. Ceza Dairesi",
+        "queries": [
+            "Tehdit",
+            "Şantaj",
+            "Hakaret",
+            "Kişilerin huzur ve sükununu bozma",
+            "Haberleşmenin engellenmesi",
+            "Çevrenin kasten kirletilmesi",
+            "İmar kirliliği",
+            "Siyasi hakların engellenmesi"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "5. Ceza Dairesi",
+        "queries": [
+            "Zimmet",
+            "İrtikap",
+            "Rüşvet",
+            "Görevi kötüye kullanma",
+            "İhaleye fesat karıştırma",
+            "Edimin ifasına fesat karıştırma",
+            "Tefecilik",
+            "Zor kullanma yetkisinin aşılması"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "6. Ceza Dairesi",
+        "queries": [
+            "Yağma",
+            "Gasp",
+            "Nitelikli yağma",
+            "Silahla yağma",
+            "Yol kesme",
+            "Etkin pişmanlık yağma"
+        ],
+        "weight": 3000
+    },
+    {
+        "chamber": "7. Ceza Dairesi",
+        "queries": [
+            "Özel Ceza Yasaları",
+            "Kabahatler Kanunu",
+            "İdari para cezası",
+            "Mülkiyetin kamuya geçirilmesi",
+            "Gümrük kaçakçılığı"
+        ],
+        "weight": 2000
+    },
+    {
+        "chamber": "8. Ceza Dairesi",
+        "queries": [
+            "İşkence",
+            "Eziyet",
+            "Bilişim sistemine girme",
+            "Banka veya kredi kartlarının kötüye kullanılması",
+            "Hakkı olmayan yere tecavüz",
+            "Ateşli Silahlar Kanunu",
+            "6136 sayılı kanun"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "9. Ceza Dairesi",
+        "queries": [
+            "Terörle Mücadele Yasası",
+            "Örgüt propagandası",
+            "İnsan ticareti",
+            "Göçmen kaçakçılığı",
+            "İftira",
+            "Suç delillerini yok etme",
+            "Suçtan kaynaklanan malvarlığı değerlerini aklama"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "10. Ceza Dairesi",
+        "queries": [
+            "Uyuşturucu madde ticareti",
+            "Uyuşturucu madde imal ve ithal",
+            "Uyuşturucu kullanmak için bulundurma",
+            "Eczacılık kanunu",
+            "Zehirli madde temini"
+        ],
+        "weight": 4500
+    },
+    {
+        "chamber": "11. Ceza Dairesi",
+        "queries": [
+            "Resmi belgede sahtecilik",
+            "Özel belgede sahtecilik",
+            "Mühür bozma",
+            "Vergi Usul Kanunu",
+            "Fatura sahteciliği",
+            "İcra ve İflas Kanunu suçları"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "12. Ceza Dairesi",
+        "queries": [
+            "Taksirle öldürme",
+            "Taksirle yaralama",
+            "Trafik güvenliğini tehlikeye sokma",
+            "Özel hayatın gizliliği",
+            "Kişisel verilerin hukuka aykırı ele geçirilmesi",
+            "Organ ve doku ticareti"
+        ],
+        "weight": 4000
+    },
+    {
+        "chamber": "13. Ceza Dairesi",
+        "queries": [
+            "Hırsızlık",
+            "Suç eşyasının satın alınması",
+            "Eşya üzerinde tasarruf",
+            "Hırsızlıkta etkin pişmanlık"
+        ],
+        "weight": 2000
+    },
+    {
+        "chamber": "14. Ceza Dairesi",
+        "queries": [
+            "Cinsel saldırı",
+            "Çocukların cinsel istismarı",
+            "Reşit olmayanla cinsel ilişki",
+            "Cinsel taciz",
+            "Kişiyi hürriyetinden yoksun kılma",
+            "Fuhuş",
+            "Müstehcenlik",
+            "Aile hukukundan kaynaklanan yükümlülükler"
+        ],
+        "weight": 3500
+    },
+    {
+        "chamber": "15. Ceza Dairesi",
+        "queries": [
+            "Dolandırıcılık",
+            "Nitelikli dolandırıcılık",
+            "Güveni kötüye kullanma",
+            "Bedelsiz senedi kullanma",
+            "Hileli iflas",
+            "Bilişim sistemleri kullanılarak dolandırıcılık"
+        ],
+        "weight": 3500
+    }
+]

@@ -4,52 +4,65 @@ import time
 import re
 import requests
 import random
+from dotenv import load_dotenv
 from datetime import datetime
 from config import Config
+load_dotenv()
+# --- CONFIGURATION ---
+BASE_URL = os.environ.get("BASE_URL")
+INDEX_NAME = os.environ.get("INDEX_NAME")
+API_TOKEN = os.environ.get("API_TOKEN")
 
-BASE_URL = os.environ.get("BASE_URL")  
-INDEX_NAME = os.environ.get("INDEX_NAME")       
-API_TOKEN = os.environ.get("API_TOKEN") 
+HIGH_COURT_FILTER = "Yargıtay"
 
+DELAY_MIN = 0.5
+DELAY_MAX = 1.0
 
-TARGETS = {
-    "yargitay": 400,
-    "danistay": 200,
-    "bam": 200,
-    "first_degree": 200
-}
-
-
-DELAY_MIN = 1.5  # Min saniye bekleme
-DELAY_MAX = 3.0  # Max saniye bekleme
-
-
+# --- PATHS ---
 PROJECT_ROOT = Config.ROOT_DIR
-QUERY_FILE = os.path.join(PROJECT_ROOT, "data", "test", "final_queries.json")
-OUTPUT_DIR = os.path.join(PROJECT_ROOT, "data", "raw", "json")
+QUERY_FILE = os.path.join(PROJECT_ROOT, "data", "resources", "queries", "query_by_chamber.json")
+
+# Output directory changed to 'jsonl'
+OUTPUT_DIR = os.path.join(PROJECT_ROOT, "data", "raw", "jsonl")
+CORRUPTED_FILE = os.path.join(PROJECT_ROOT, "data", "raw", "corrupted_files.json")
 STATE_FILE = "fetch_state.json"
 
-# -----------------------------------------------
+# --- HELPERS ---
 
-def clean_filename(text):
+def sanitize_filename(text):
+    """
+    Creates a safe filename from chamber names.
+    Ex: "1. Hukuk Dairesi" -> "1_hukuk_dairesi"
+    """
     text = str(text).replace("ı", "i").replace("ğ", "g").replace("ü", "u").replace("ş", "s").replace("ö", "o").replace("ç", "c")
-    text = re.sub(r'[^\w\s-]', '', text).strip().lower()
-    return re.sub(r'[-\s]+', '_', text)[:50] # Çok uzun isimleri kes
+    text = text.lower()
+    text = re.sub(r'[^\w\s-]', '', text) # Remove punctuation
+    return re.sub(r'[-\s]+', '_', text).strip()
 
 def load_json(filepath, default=None):
     if os.path.exists(filepath):
-        with open(filepath, "r", encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except json.JSONDecodeError:
+            print(f"Warning: Failed to decode JSON from {filepath}. Using default.")
+            return default
     return default
 
 def save_json(filepath, data):
+    # Atomic save could be better, but standard write is fine for state
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-def fetch_from_meili(query, court_filter, limit=5):
+def append_jsonl(filepath, record):
     """
-    Meilisearch API'sine güvenli istek atar.
+    Appends a single record as a JSON line to the specified file.
+    Efficient for large datasets as it doesn't rewriting the whole file.
     """
+    with open(filepath, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+def fetch_from_meili(query, filters, limit):
     url = f"{BASE_URL}/indexes/{INDEX_NAME}/search"
     
     headers = {
@@ -59,10 +72,8 @@ def fetch_from_meili(query, court_filter, limit=5):
     
     payload = {
         "q": query,
-        "filter": [f'high_court = "{court_filter}"'],
-        "limit": limit,
-        # Veri trafiğini azaltmak için sadece gerekenleri çekiyoruz
-        "attributesToRetrieve": ["id", "title", "text", "decisionContent", "high_court"]
+        "filter": filters,
+        "limit": limit
     }
     
     try:
@@ -71,125 +82,195 @@ def fetch_from_meili(query, court_filter, limit=5):
         if response.status_code == 200:
             return response.json().get("hits", [])
         elif response.status_code == 401:
-            print("\nHATA: Yetkisiz Erişim (401). Token'ı kontrol et!")
+            print("\nError: API Unauthorized Access (401).")
             return []
         elif response.status_code == 429:
-            print("\nÇok fazla istek (429). 10 saniye soğuma...")
+            print("\nError: API Too Many Requests (429).")
             time.sleep(10)
             return []
         else:
-            print(f"\nAPI Hatası ({response.status_code}): {response.text}")
+            print(f"\nAPI Error ({response.status_code}): {response.text}")
             return []
             
     except Exception as e:
-        print(f"\nBağlantı Hatası: {e}")
+        print(f"\n Connection Error: {e}")
         return []
 
+# --- MAIN ---
+
 def main():
-    print(" Çekme Motoru Başlatılıyor...")
-    print(f"Hedef Index: {INDEX_NAME}")
+    print(" Booting Fetcher (JSONL Mode)...")
     
+    # Ensure output directory exists
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    # 1. Kaynakları Yükle
     if not os.path.exists(QUERY_FILE):
-        print(f" HATA: {QUERY_FILE} bulunamadı. Önce query oluşturma adımını yapmalısın.")
+        print(f" Error: {QUERY_FILE} not found.")
         return
 
-    queries = load_json(QUERY_FILE, [])
+    chamber_data = load_json(QUERY_FILE, [])
     
-    # 2. State Yükle (Kaldığımız Yer)
-    state = load_json(STATE_FILE, {
-        "counts": {k: 0 for k in TARGETS}, 
-        "processed_queries": [],           
-        "seen_ids": []                     
-    })
+    # State Structure: 
+    # { 
+    #   "current_index": 0, 
+    #   "processed_queries": [], 
+    #   "downloaded_files": { "id": {meta} } 
+    # }
+    state = load_json(STATE_FILE, {"current_index": 0, "processed_queries": [], "downloaded_files": {}})
     
-    # Performans için set'e çevir
-    seen_ids_set = set(state["seen_ids"])
-    processed_queries_set = set(state["processed_queries"])
+    current_index = state.get("current_index", 0)
+    processed_queries_set = set(state.get("processed_queries", []))
+    downloaded_files = state.get("downloaded_files", {})
     
-    print(f"Mevcut İlerleme: {state['counts']}")
+    # Load Corrupted Files list
+    corrupted_files = load_json(CORRUPTED_FILE, [])
     
-    # 3. Ana Döngü
-    for i, query in enumerate(queries):
-        # A. Genel Hedef Kontrolü
-        if all(state["counts"][k] >= TARGETS[k] for k in TARGETS):
-            print("\nTEBRİKLER! Tüm hedeflere (1000 Karar) ulaşıldı.")
-            break
-            
-        # B. Bu kelime daha önce işlendi mi?
-        if query in processed_queries_set:
+    # Build a fast lookup set for all seen IDs (Valid + Corrupted)
+    # This prevents re-fetching the same doc even if queries overlap.
+    seen_ids_set = set(downloaded_files.keys())
+    for cf in corrupted_files:
+        if "id" in cf:
+            seen_ids_set.add(cf["id"])
+    
+    total_new_saved = 0
+    total_corrupted = 0
+    
+    print(f" Loaded State: {len(seen_ids_set)} items seen previously.")
+
+    for i, group in enumerate(chamber_data):
+        # 1. Resume Capability
+        if i < current_index:
+            continue
+
+        chamber_name = group.get("chamber")
+        weight = group.get("weight")
+        queries = group.get("queries")
+        
+        if not queries:
+            print(f"Skipping empty group: {chamber_name}")
             continue
             
-        print(f"🔍 [{i+1}/{len(queries)}] Sorgu: '{query}' işleniyor...", end="\r")
+        # 2. Setup JSONL Path for this Chamber
+        safe_name = sanitize_filename(chamber_name)
+        jsonl_path = os.path.join(OUTPUT_DIR, f"{safe_name}.jsonl")
         
-        any_new_save = False
+        # 3. Dynamic Limit Calculation
+        limit_per_query = max(1, int(weight / len(queries)))
         
-        # C. Her Mahkeme İçin İstek At
-        for court_type, target_limit in TARGETS.items():
-            # Mahkeme kotası dolduysa atla
-            if state["counts"][court_type] >= target_limit:
-                continue
-                
-            # --- DELAY (Sistemi Korumak İçin) ---
+        print(f"\n🔹 [{i+1}/{len(chamber_data)}] Group: {chamber_name}")
+        print(f"   Target: {jsonl_path}")
+        print(f"   Limit/Query: {limit_per_query}")
+        
+        group_saved_count = 0
+        
+        for q_idx, query in enumerate(queries):
+            # Unique Key for this specific query run
+            query_key = f"{chamber_name}:{query}"
+            
+            if query_key in processed_queries_set:
+                 continue
+
+            print(f"   [{q_idx+1}/{len(queries)}] Query: '{query}'...", end="\r")
+            
+            # 4. Filter Logic
+            filters = [
+                f"court = '{chamber_name}'",
+                f"high_court = '{HIGH_COURT_FILTER}'"
+            ]
+            
             time.sleep(random.uniform(DELAY_MIN, DELAY_MAX))
             
-            # İstek
-            hits = fetch_from_meili(query, court_type, limit=5)
+            hits = fetch_from_meili(query, filters, limit_per_query)
             
+            # Even if 0 hits, mark as processed to avoid retry loops
             if not hits:
+                processed_queries_set.add(query_key)
                 continue
-
-            # D. Kayıt İşlemleri
+                
             for hit in hits:
                 doc_id = str(hit.get("id"))
                 
-                # Daha önce indirdik mi?
+                # Check Global Deduplication
                 if doc_id in seen_ids_set:
                     continue
                 
-                # İçerik Kontrolü (text veya decisionContent)
-                content = hit.get("text") or hit.get("decisionContent")
-                if not content or len(content) < 50:
-                    continue
-                
-                # JSON Formatı
-                record = {
-                    "id": doc_id,
-                    "title": hit.get("title", "Başlıksız"),
-                    "text": content,
-                    "meta": {
-                        "court": court_type,
+                # 5. Corruption Check
+                text_content = hit.get("text") or ""
+                # Check for known error signatures in the document text
+                is_corrupted = "ADALET_RUNTIME_EXCEPTION" in text_content or \
+                               "FMTY\":\"ERROR" in text_content or \
+                               "FMC\":\"ADALET_RUNTIME_EXCEPTION" in text_content
+
+                if is_corrupted:
+                    corrupted_files.append({
+                        "id": doc_id,
+                        "filename": hit.get("filename"),
+                        "chamber": chamber_name,
                         "query": query,
-                        "fetched_at": datetime.now().isoformat()
-                    }
+                        "fetched_at": datetime.now().isoformat(),
+                        "error_snippet": text_content[:200]
+                    })
+                    total_corrupted += 1
+                    seen_ids_set.add(doc_id) 
+                    continue
+
+                # 6. Save Record (JSONL)
+                record = hit.copy()
+                
+                # Keep metadata inside the record for traceability
+                record["meta"] = {
+                    "court": chamber_name,
+                    "query": query,
+                    "fetched_at": datetime.now().isoformat(),
+                    "original_filename": hit.get("filename", "")
                 }
                 
-                # Dosyaya Yaz
-                safe_q = clean_filename(query)
-                filename = f"{court_type}_{safe_q}_{doc_id}.json"
-                save_json(os.path.join(OUTPUT_DIR, filename), record)
+                append_jsonl(jsonl_path, record)
                 
-                # State Güncelle
+                # 7. Update RAM State
+                downloaded_files[doc_id] = {
+                    "f": hit.get("filename"), # Short keys to save RAM if needed
+                    "c": chamber_name,
+                    "q": query,
+                    "t": datetime.now().isoformat()
+                }
                 seen_ids_set.add(doc_id)
-                state["counts"][court_type] += 1
-                any_new_save = True
-        
-        # E. Query Tamamlandı
-        processed_queries_set.add(query)
-        
-        # State Kaydet (Her 5 sorguda bir diske yazalım ki yavaşlamasın)
-        if i % 5 == 0 or any_new_save:
-            state["seen_ids"] = list(seen_ids_set)
-            state["processed_queries"] = list(processed_queries_set)
-            save_json(STATE_FILE, state)
+                total_new_saved += 1
+                group_saved_count += 1
             
-            # Ekrana durum bas
-            if any_new_save:
-                print(f"\n   Kaydedildi. Durum: {state['counts']}")
+            # Mark query as done
+            processed_queries_set.add(query_key)
+            
+            # Regular Checkpoint (Every 10 items)
+            if total_new_saved % 10 == 0:
+                 state["downloaded_files"] = downloaded_files
+                 state["processed_queries"] = list(processed_queries_set)
+                 save_json(STATE_FILE, state)
+                 save_json(CORRUPTED_FILE, corrupted_files)
 
-    print("\nProgram Sonlandı.")
+        # Force save at end of group
+        state["downloaded_files"] = downloaded_files
+        state["processed_queries"] = list(processed_queries_set)
+        save_json(STATE_FILE, state)
+        save_json(CORRUPTED_FILE, corrupted_files)
+        
+        # --- INTERACTIVE PAUSE ---
+        print(f"\n\n✅ Group Completed: {chamber_name}")
+        print(f"   - Sent Queries: {len(queries)}")
+        print(f"   - New Saved in this group: {group_saved_count}")
+        print(f"   - Total New Saved: {total_new_saved}")
+        
+        choice = input(f"\n>>> Move to next group ({i+2})? (y/n): ").strip().lower()
+        if choice == 'y':
+            state["current_index"] = i + 1
+            save_json(STATE_FILE, state)
+        else:
+            print("\nFetching stopped by user.")
+            break
+    
+    print(f"\nFetching Process Completed.")
+    print(f"Total New Saved: {total_new_saved}")
+    print(f"Total Corrupted Files: {total_corrupted}")
 
 if __name__ == "__main__":
     main()
