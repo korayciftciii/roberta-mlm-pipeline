@@ -28,7 +28,7 @@ class DataConfig:
     ))
     terms_file: str = field(default_factory=lambda: os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "data", "resources", "terms", "legal_terms.txt"
+        "data", "resources", "terms", "legal_terms_cleaned.txt"
     ))
     output_dir: str = field(default_factory=lambda: os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
